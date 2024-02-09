@@ -1,5 +1,4 @@
 function formatTime(date: Date) {
-  console.log('XXXXXXXXX ', typeof date);
   const hora = date.getHours();
   const minutos = date.getMinutes();
 

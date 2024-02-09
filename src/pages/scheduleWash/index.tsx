@@ -14,6 +14,7 @@ import { IAppointment } from "../../types/appointment";
 import { AppNavigatorRoutesProps } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
 import { checkEligibilitySchedule } from "../../lib/checkElegibilySchedule";
+import { checkAlreadyExistentSchedule } from "../../lib/checkAlreadyExistentSchedule";
 
 function ScheduleWash() {
 
@@ -36,6 +37,8 @@ function ScheduleWash() {
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
+  const { appointments } = useSchedule();
+
   async function onSubmit(data: Omit<IAppointment, 'id'>) {
     const id = uuidv4();
 
@@ -43,6 +46,8 @@ function ScheduleWash() {
       const appointment = { id, ...data}
 
       checkEligibilitySchedule(appointment.date, appointment.type)
+
+      checkAlreadyExistentSchedule(appointments, appointment)
 
       await onAddAppointment(appointment)
 

@@ -1,3 +1,5 @@
+import { getDurationWashing } from './getDurationWashing';
+
 function checkEligibilitySchedule(date: Date, type: 'SIMPLES' | 'COMPLETA') {
   const dayOfTheWeek = date.getDay();
 
@@ -13,19 +15,13 @@ function checkEligibilitySchedule(date: Date, type: 'SIMPLES' | 'COMPLETA') {
     );
   }
 
-  if (hour >= 18 && hour < 10) {
+  if (hour < 10 || hour >= 18) {
     throw new Error(
       'Não é possivel fazer agendamentos antes das 10hs e depois das 18hs',
     );
   }
 
-  let duration: any;
-
-  if (type === 'SIMPLES') {
-    duration = 30;
-  } else if (type === 'COMPLETA') {
-    duration = 45;
-  }
+  const duration = getDurationWashing(type);
 
   const hourWithSum = new Date(date.getTime() + duration * 60000);
 
