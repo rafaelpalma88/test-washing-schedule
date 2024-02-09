@@ -26,7 +26,7 @@ function checkAlreadyExistentSchedule(
   });
 
   // Retorna true se houver algum compromisso que se sobreponha ao novo compromisso
-  if (overlappingAppointments.length !== 0) {
+  if (overlappingAppointments.length === 0) {
     throw new Error('Este horário já possui um agendamento');
   }
 }
