@@ -1,6 +1,9 @@
 # Washing Schedule
 
-Baixe o projeto e rode através do
+Baixe o projeto e faça a instalação de suas dependências através do seguinte comando:
+`npm install`
+
+Após a instalação, rode o projeto através do seguinte comando:
 
 `npx expo start`
 
